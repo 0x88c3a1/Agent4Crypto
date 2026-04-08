@@ -1,0 +1,69 @@
+api_keys:
+  # Insert your OpenAI API key before running experiments.
+  openai: "YOUR_LLM_API_KEY"
+
+  # OpenAI API base URL. Keep this value unless you intentionally switch providers.
+  base_url: "https://api.openai.com/v1"
+
+ablation:
+  data_team:
+    use_asset: true
+    use_technical: true
+    use_news: true
+    use_visual: true
+  inter_team:
+    use_reflector: true
+    use_risk_manager: true
+  mechanism:
+    use_competition: true
+
+settings:
+  initial_capital: 1000000
+  transaction_fee: 0.001
+  data_lookback_days: 90
+  max_news_items: 5
+
+agent_params:
+  # Available modes: "base", "dr", "rl". The paper default is the RL weighting variant.
+  strategy_mode: "rl"
+
+  # Fill in the primary text model before running.
+  model: ""
+
+  # Fill in the vision model before running. Leave blank to reuse the text model.
+  visual_model: ""
+
+  # Step size used by the direct-feedback weighting mode.
+  alpha: 0.01
+
+  # PPO rollout horizon used by the RL weighting variant.
+  rl_rollout_horizon: 50
+  initial_weights: [0.33, 0.33, 0.33]
+
+assets:
+  BTC-USD:
+    validation: {start: "2023-01-18", end: "2023-03-13"}
+    bear:       {start: "2023-04-11", end: "2023-06-16"}
+    sideways:   {start: "2023-06-16", end: "2023-08-25"}
+    bull:       {start: "2023-09-30", end: "2023-12-01"}
+
+  ETH-USD:
+    validation: {start: "2023-01-12", end: "2023-03-12"}
+    bear:       {start: "2023-04-11", end: "2023-06-16"}
+    sideways:   {start: "2023-06-19", end: "2023-08-31"}
+    bull:       {start: "2023-09-30", end: "2023-12-01"}
+
+  SOL-USD:
+    validation: {start: "2023-01-13", end: "2023-03-12"}
+    bear:       {start: "2023-04-11", end: "2023-06-16"}
+    sideways:   {start: "2023-07-07", end: "2023-08-31"}
+    bull:       {start: "2023-09-30", end: "2023-12-01"}
+
+backtest:
+  target_asset: "SOL-USD"
+  target_regime: "bear"
+  # Fixed seed list used by repeated evaluation scripts.
+  run_seeds: [42, 43, 44, 45, 46]
+
+  # Optional single-run override. When omitted, one-off runs use the first entry in run_seeds.
+  # run_seed: 42

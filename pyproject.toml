@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent4crypto"
+version = "0.1.0"
+description = "A market-feedback-aligned LLM multi-agent system for cryptocurrency trading."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "colorama",
+    "matplotlib",
+    "mplfinance",
+    "numpy",
+    "openai",
+    "pandas",
+    "pyyaml",
+    "tenacity",
+    "torch",
+    "tqdm",
+]
+
+[tool.setuptools]
+packages = [
+    "agent4crypto",
+    "agent4crypto.core",
+    "agent4crypto.data",
+    "agent4crypto.runners",
+    "agent4crypto.ui",
+]
